@@ -40,4 +40,24 @@ class User extends Authenticatable
     {
         $this->notify(new MessageSent($data));
     }
+
+    public function Admin()
+    {
+        return $this->hasOne(Admin::class, 'id_user');
+    }
+
+    public function Client()
+    {
+        return $this->hasOne(Client::class, 'id_user');
+    }
+
+    public function Reviewer()
+    {
+        return $this->hasOne(Reviewer::class, 'id_user');
+    }
+
+    public function Adviser()
+    {
+        return $this->hasOne(Adviser::class, 'id_user');
+    }
 }

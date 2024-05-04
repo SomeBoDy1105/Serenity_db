@@ -24,6 +24,9 @@ class RegisterRequest extends FormRequest
         return [
             'email' => 'required|unique:users,email',
             'password' => 'required|confirmed|min:6',
+            'age' => 'required|integer',
+            'gender' => 'required|in:male,female',
+            'role' => 'required|in:client,admin,adviser,reviewer',
         ];
     }
 }
