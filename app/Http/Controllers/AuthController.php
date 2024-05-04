@@ -22,8 +22,12 @@ class AuthController extends Controller
     public function register(RegisterRequest $request): JsonResponse
     {
         $data = $request->validated();
+        $data['email'] = $request->input('email');
         $data['password'] = Hash::make($data['password']);
-        $data['username'] = strstr($data['email'], '@', true);
+        $data['role'] = $request->input('role');
+        $data['age'] = $request->input('age');
+        $data['gender'] = $request->input('gender');
+        $data['username'] = $this->CreateName($data['email'], $data['role']);
 
         $user = User::create($data);
         $token = $user->createToken(User::USER_TOKEN);
@@ -32,6 +36,29 @@ class AuthController extends Controller
             'user' => $user,
             'token' => $token->plainTextToken,
         ], 'User registered successfully', 201);
+    }
+
+    private function CreateName($email, $role)
+    {
+
+        // Convert words to arrays of characters
+        $email = strstr($email, '@', true);
+        $constantChars = str_split($email);
+        $secondChars = str_split($role);
+
+        // Shuffle the letters of each word
+        shuffle($constantChars);
+        shuffle($secondChars);
+
+        // Convert arrays back to strings
+        $mixedConstant = implode('', $constantChars);
+        $mixedSecond = implode('', $secondChars);
+        $username = $mixedConstant . $mixedSecond;
+        $username = str_split($username);
+        shuffle($username);
+        $username = implode('', $username);
+        // Return the combined mixed words
+        return $username;
     }
 
 
