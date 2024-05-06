@@ -16,13 +16,14 @@ return new class extends Migration
             $table->string('id')->primary(); // will be the id of the reviwer and username in the same time
             $table->foreignId('id_user')->constrained('users')->cascadeOnDelete();
             $table->string('avatar')->nullable();
-            // $table->string('username')->unique();
-            $table->string('ID_card')->nullable();
+            $table->string('name');
+            $table->string('surname');
             $table->string('email')->unique();
             $table->string('password');
+            $table->string('ID_card')->nullable();
             $table->integer('age')->nullable();
             $table->enum('gender', ['male', 'female'])->nullable();
-            $table->string('role')->default('reviewer');
+            // $table->string('role')->default('reviewer');
             $table->timestamps();
         });
         DB::unprepared('
