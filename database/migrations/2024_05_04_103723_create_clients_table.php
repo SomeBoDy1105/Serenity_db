@@ -22,7 +22,7 @@ return new class extends Migration
             $table->string('password');
             $table->integer('age')->nullable();
             $table->enum('gender', ['male', 'female'])->nullable();
-            $table->string('role')->default('cient');
+            // $table->string('role')->default('cient');
             $table->timestamps();
         });
 

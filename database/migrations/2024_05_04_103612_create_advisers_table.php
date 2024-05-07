@@ -16,15 +16,18 @@ return new class extends Migration
             $table->string('id')->primary(); // will be the id of the adviser and username in the same time
             $table->foreignId('id_user')->constrained('users')->cascadeOnDelete();
             $table->string('avatar')->nullable();
-            // $table->string('username')->unique();
-            $table->float('points')->default(100);
-            $table->string('specialty')->nullable();
-            $table->string('ID_card')->nullable();
+            $table->string('name');
+            $table->string('surname');
             $table->string('email')->unique();
             $table->string('password');
+            $table->string('specialty')->nullable();
+            $table->string('ID_card')->nullable();
+            $table->float('points')->default(100);
             $table->integer('age')->nullable();
             $table->enum('gender', ['male', 'female'])->nullable();
-            $table->string('role')->default('adviser');
+            $table->float('rate')->default(0.0);
+            $table->string('bio')->nullable();
+            // $table->string('role')->default('adviser');
             $table->timestamps();
         });
 

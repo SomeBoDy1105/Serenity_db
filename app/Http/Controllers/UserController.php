@@ -15,7 +15,7 @@ class UserController extends Controller
      */
     public function index(): JsonResponse
     {
-        $users = User::where('id', '!=', auth()->user()->id)->get();
+        $users = User::where('role', 'Adviser')->get();
         return $this->success($users);
     }
 }
