@@ -11,11 +11,15 @@ class Adviser extends Model
 
     protected $table = 'advisers';
     protected $guarded = [
-        'points',
+        'id',
     ];
 
     public function user()
     {
         return $this->belongsTo(User::class, 'id_user');
+    }
+    public function specialty()
+    {
+        return $this->belongsTo(Specialty::class, 'id_specialty');
     }
 }
