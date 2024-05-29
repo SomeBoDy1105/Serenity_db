@@ -24,12 +24,13 @@ return new class extends Migration
             $table->string('specialty')->nullable();
             $table->string('ID_card')->nullable();
             $table->float('points')->default(100);
+            $table->date('dateN')->nullable();
             $table->integer('age')->nullable();
             $table->enum('gender', ['male', 'female'])->nullable();
             $table->string('role');
             $table->float('rate')->default(0.0);
             $table->string('bio')->nullable();
-            $table->string('role')->default('adviser');
+            $table->string('role');
             $table->timestamps();
         });
 
@@ -40,8 +41,8 @@ return new class extends Migration
         FOR EACH ROW
         BEGIN
         IF NEW.role = "adviser" THEN
-            INSERT INTO advisers (id, id_user, first_name, last_name, points, avatar, email, password, age, gender, role, created_at, updated_at)
-            VALUES (NEW.username, NEW.id, NEW.first_name, NEW.last_name, 100, NULL, NEW.email, NEW.password, NEW.age, NEW.gender, "adviser", NOW(), NOW());
+             INSERT INTO advisers (id, id_user, first_name, last_name, points, avatar, email, password, dateN, age, gender, role, created_at, updated_at)
+             VALUES (NEW.username, NEW.id, NEW.first_name, NEW.last_name, 100, NULL, NEW.email, NEW.password, NEW.dateN, NEW.age, NEW.gender, NEW.role, NOW(), NOW());
         END IF;
         END
         ');

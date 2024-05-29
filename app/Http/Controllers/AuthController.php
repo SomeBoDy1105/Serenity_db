@@ -23,7 +23,7 @@ class AuthController extends Controller
     public function register(RegisterRequest $request): JsonResponse
     {
         $data = $request->validated();
-        $data['first_namre'] = $request->input('first_name');
+        $data['first_name'] = $request->input('first_name');
         $data['last_name'] = $request->input('last_name');
         $data['email'] = $request->input('email');
         $data['password'] = Hash::make($data['password']);

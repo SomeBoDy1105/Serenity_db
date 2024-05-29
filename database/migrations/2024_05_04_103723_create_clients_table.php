@@ -18,13 +18,13 @@ return new class extends Migration
             $table->string('first_name');
             $table->string('last_name');
             $table->string('avatar')->nullable();
-            // $table->string('username')->unique();
             $table->float('points')->default(100);
             $table->string('email')->unique();
             $table->string('password');
+            $table->date('dateN')->nullable(); // date of birth (N for birthdate)
             $table->integer('age')->nullable();
             $table->enum('gender', ['male', 'female'])->nullable();
-            $table->string('role')->default('cient');
+            $table->string('role');
             $table->timestamps();
         });
 
@@ -34,8 +34,8 @@ return new class extends Migration
         FOR EACH ROW
         BEGIN
         IF NEW.role = "client" THEN
-            INSERT INTO clients (id, id_user, first_name, last_name, points, avatar, email, password, age, gender, role, created_at, updated_at)
-            VALUES (NEW.username, NEW.id, NEW.first_name, NEW.last_name, 100, NULL, NEW.email, NEW.password, NEW.age, NEW.gender, "client", NOW(), NOW());
+            INSERT INTO clients (id, id_user, first_name, last_name, points, avatar, email, password, dateN, age, gender, role, created_at, updated_at)
+            VALUES (NEW.username, NEW.id, NEW.first_name, NEW.last_name, 100, NULL, NEW.email, NEW.password, NEW.dateN, NEW.age, NEW.gender, NEW.role, NOW(), NOW());
         END IF;
         END
         ');
