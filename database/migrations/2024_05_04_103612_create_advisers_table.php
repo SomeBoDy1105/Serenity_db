@@ -15,7 +15,7 @@ return new class extends Migration
         Schema::create('advisers', function (Blueprint $table) {
             $table->string('id')->primary(); // will be the id of the adviser and username in the same time
             $table->foreignId('id_user')->constrained('users')->cascadeOnDelete();
-            $table->foreignId('id_specialty')->nullable()->constrained('specialties')->cascadeOnDelete();
+            $table->unsignedBigInteger('id_specialty')->constrained('specialties')->cascadeOnDelete();
             $table->string('first_name');
             $table->string('last_name');
             $table->string('avatar')->nullable();
@@ -30,7 +30,6 @@ return new class extends Migration
             $table->string('role');
             $table->float('rate')->default(0.0);
             $table->string('bio')->nullable();
-            $table->string('role');
             $table->timestamps();
         });
 

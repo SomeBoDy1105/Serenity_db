@@ -10,9 +10,7 @@ class Adviser extends Model
     use HasFactory;
 
     protected $table = 'advisers';
-    protected $guarded = [
-        'id',
-    ];
+    protected $guarded = ['id'];
 
     public function user()
     {

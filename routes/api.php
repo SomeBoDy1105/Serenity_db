@@ -6,6 +6,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ChatController;
 use App\Http\Controllers\ChatMessageController;
 use App\Http\Controllers\ClientController;
+use App\Http\Controllers\DatabaseController;
 use App\Http\Controllers\ReviewerController;
 use App\Http\Controllers\UserController;
 use Illuminate\Http\Request;
@@ -35,6 +36,8 @@ Route::middleware('auth:sanctum')
         Route::apiResource('user', UserController::class)->only(['index']);
         Route::apiResource('adviser', AdviserController::class)->only(['index', 'show']);
         Route::get('adviser/search', [UserController::class, 'search'])->name('adviser.search');
+        Route::get('/check-database-connection', [DatabaseController::class, 'checkConnection']);
+
         // Route::apiResource('admin', AdminController::class);
         // Route::apiResource('client', ClientController::class);
         // Route::apiResource('Reviewer', ReviewerController::class);
