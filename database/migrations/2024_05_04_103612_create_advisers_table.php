@@ -15,9 +15,10 @@ return new class extends Migration
         Schema::create('advisers', function (Blueprint $table) {
             $table->string('id')->primary(); // will be the id of the adviser and username in the same time
             $table->foreignId('id_user')->constrained('users')->cascadeOnDelete();
-            $table->string('avatar')->nullable();
+            $table->foreignId('id_specialty')->nullable()->constrained('specialties')->cascadeOnDelete();
             $table->string('first_name');
             $table->string('last_name');
+            $table->string('avatar')->nullable();
             $table->string('email')->unique();
             $table->string('password');
             $table->string('specialty')->nullable();
@@ -26,6 +27,7 @@ return new class extends Migration
             $table->date('dateN')->nullable();
             $table->integer('age')->nullable();
             $table->enum('gender', ['male', 'female'])->nullable();
+            $table->string('role');
             $table->float('rate')->default(0.0);
             $table->string('bio')->nullable();
             $table->string('role');

@@ -15,9 +15,9 @@ return new class extends Migration
         Schema::create('reviewers', function (Blueprint $table) {
             $table->string('id')->primary(); // will be the id of the reviwer and username in the same time
             $table->foreignId('id_user')->constrained('users')->cascadeOnDelete();
-            $table->string('avatar')->nullable();
             $table->string('first_name');
             $table->string('last_name');
+            $table->string('avatar')->nullable();
             $table->string('email')->unique();
             $table->string('password');
             $table->string('ID_card')->nullable();
@@ -33,6 +33,7 @@ return new class extends Migration
         FOR EACH ROW
         BEGIN
         IF NEW.role = "reviewer" THEN
+
             INSERT INTO reviewers (id, id_user, first_name, last_name, points, avatar, email, password, dateN, age, gender, role, created_at, updated_at)
             VALUES (NEW.username, NEW.id, NEW.first_name, NEW.last_name, 100, NULL, NEW.email, NEW.password, NEW.dateN, NEW.age, NEW.gender, NEW.role, NOW(), NOW());
             END IF;

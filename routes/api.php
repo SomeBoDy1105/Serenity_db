@@ -33,9 +33,8 @@ Route::middleware('auth:sanctum')
         Route::apiResource('chat', ChatController::class)->only(['index', 'store', 'show']);
         Route::apiResource('chat_message', ChatMessageController::class)->only(['index', 'store']);
         Route::apiResource('user', UserController::class)->only(['index']);
-
         Route::apiResource('adviser', AdviserController::class)->only(['index', 'show']);
-
+        Route::get('adviser/search', [UserController::class, 'search'])->name('adviser.search');
         // Route::apiResource('admin', AdminController::class);
         // Route::apiResource('client', ClientController::class);
         // Route::apiResource('Reviewer', ReviewerController::class);
